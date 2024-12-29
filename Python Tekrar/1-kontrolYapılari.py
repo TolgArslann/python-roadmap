@@ -47,11 +47,31 @@ def pswCont():
     En az bir büyük harf ve bir küçük harf içermeli.
     En az bir sayı içermeli.
     """
-    user_psw = input("Lutfen bir sifre giriniz : ")
-    if user_psw.isupper() and user_psw.islower():
-        print("Girdiginiz sifre gecerli")
+    user_password = input("Lütfen bir şifre giriniz: ")
+
+    # Uzunluk kontrolü
+    if len(user_password) < 8:
+        print("Şifre en az 8 karakter uzunluğunda olmalıdır.")
+        return
+
+    # Karakter türü kontrolleri
+    has_upper = False
+    has_lower = False
+    has_digit = False
+
+    for char in user_password:
+        if char.isupper():
+            has_upper = True
+        elif char.islower():
+            has_lower = True
+        elif char.isdigit():
+            has_digit = True
+
+    # Sonuç kontrolü
+    if has_upper and has_lower and has_digit:
+        print("Şifre geçerli.")
     else:
-        print("Girdiginiz sifre en az 8 karakter ve buyuk kucuk harf icermelidir")
+        print("Şifre, en az bir büyük harf, bir küçük harf ve bir sayı içermelidir.")
 
 
 def twoNum():
