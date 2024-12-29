@@ -23,13 +23,13 @@ def urunSistemi():
                 except ValueError:
                     print("Lutfen gecerli bir deger giriniz...")   
                 return userProductValue
-        def formatValue(value):
+        def formatValue(value): # TL formatinda fiyati duzenleme
             """Bir sayıyı nokta ile formatlar ve TL ekler."""
             return f"{value:,.0f}".replace(",", ".") + " TL"
         productValue = productValuefonk()
         formattedValue = formatValue(productValue)
         print(formattedValue)       
-        def productStockfonk(): #stok fiyati
+        def productStockfonk(): #stok fiyati alma
             try:
                 productStock = int(input("Stok miktariniz giriniz : "))
                 if productStock < 0:
