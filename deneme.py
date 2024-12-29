@@ -1,0 +1,1 @@
+myDict = {"urun no -1 " : "kitap ", }
