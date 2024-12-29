@@ -11,36 +11,91 @@ found = False
 while True:
     userProduct = input("Urun adini giriniz : ")
     urunNo +=1
-    try:
-        userProductValue = float(input("Urun Fiyatini giriniz : "))
-        lastValue = f"{userProductValue} TL"
-    except ValueError:
-        print("Lutfen gecerli bir deger giriniz...")
-    try:
-        productStock = int(input("Stok miktariniz giriniz : "))
-    except ValueError:
-        print("Gecerli bir deger giriniz...")
-    myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStock, "urun fiyati ": lastValue}
-    #myDict[urunNo].update({"Urun" : userProduct, "toplam stok": productStock, "urun fiyati ": lastValue})
+    def productValuefonk(): #Kullanicidan urun fiyati alma
+        while True:            
+            try:
+                userProductValue = float(input("Urun Fiyatini giriniz : "))                
+                if userProductValue < 0:
+                    raise ValueError("Fiyat negatif olamaz")                
+            except ValueError:
+                print("Lutfen gecerli bir deger giriniz...")   
+            return userProductValue           
+    def productStockfonk():
+        try:
+            productStock = int(input("Stok miktariniz giriniz : "))
+            if productStock < 0:
+                raise ValueError("Stok negatif olamaz") 
+        except ValueError:
+            print("Gecerli bir deger giriniz...")
+        return productStock
+    myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati ":productValuefonk() }
+    def productShow():
+        for i in myDict:
+            print(f"\n\nUrunler\n"
+                f"Urun No : {myDict[i]}\n"
+                f"Urun ismi : {myDict[i]['Urun']}\n"
+                f"Urun Stogu : {myDict[i]['toplam stok']}\n"
+                f"Urun Fiyati : {myDict[i]['urun fiyati']}" 
+                )
+
+
+    def productUpdate():
+        try:
+            urun_no = int(input("Guncellemek istediginiz urun numarasini giriniz : "))
+            if urun_no in myDict:
+                yeni_ad = input("Yeni Urun ismini giriniz : ")
+                try:
+                    yeni_fiyat = float(input("Yeni ürün fiyatını giriniz: "))
+                    yeni_fiyat_str = f"{yeni_fiyat} TL"
+                except ValueError:
+                    print("Geçerli bir fiyat giriniz.")
+                    return
+                try:
+                    yeni_stok = int(input("Yeni stok miktarını giriniz: "))
+                except ValueError:
+                    print("Geçerli bir stok miktarı giriniz.")
+                    return
+                myDict[urun_no] = {"Urun": yeni_ad, "toplam stok": yeni_stok, "urun fiyati": yeni_fiyat_str}
+                print("Ürün başarıyla güncellendi.")
+            else:
+                print("Gecersiz urun numarasi...")
+        except ValueError:
+            print("Geçerli bir ürün numarası giriniz.")
+    def urun_sil():
+        try:
+            urun_no = int(input("Silmek istediğiniz ürünün numarasını giriniz: "))
+            if urun_no in myDict:
+                del myDict[urun_no]
+                print("Ürün başarıyla silindi.")
+            else:
+                print("Geçersiz ürün numarası.")
+        except ValueError:
+            print("Geçerli bir ürün numarası giriniz.")
+
     while True:
-        user_input = int(input("\n\nUrun eklemeye devam etmek icin '1'\n" 
-                               "Urunleri goruntulemek icin '2'\n"
-                                "Mevcut Urunu guncellemek icin '3'\n"
-                                "Sonlandirmak icin '4'\n"
-                                "\nIsleminiz : "))
-        if user_input == 1:
-            break
-        elif user_input == 2:
-            print(myDict)
-        elif user_input == 3:# bu kisimda tikandim. devamini getiremiyorum.
-            print(myDict)
-            update_num = input("Urunleriniz listelenmistir.Guncellemek istediginiz urunun numarasini giriniz : ")
-            # myDict[update_num].update
-        elif user_input == 4:
-            found = True
-            break
-        else:
-            print("Gecerli bir deger giriniz")
+        print("\n1. Ürün ekle")
+        print("2. Ürünleri görüntüle")
+        print("3. Ürün güncelle")
+        print("4. Ürün sil")
+        print("5. Çıkış")
+        try:
+            secim = int(input("Seçiminiz: "))
+            if secim == 1:
+                break
+            elif secim == 2:
+                productShow()
+            elif secim == 3:
+                productUpdate()
+            elif secim == 4:
+                urun_sil()
+            elif secim == 5:
+                print("Programdan çıkılıyor.")
+                found = True
+                break
+            else:
+                print("Geçersiz seçim. Lütfen 1-5 arasında bir sayı giriniz.")
+        except ValueError:
+            print("Lütfen geçerli bir sayı giriniz.")
     if found:
         break
     
