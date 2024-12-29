@@ -20,7 +20,7 @@ while True:
             except ValueError:
                 print("Lutfen gecerli bir deger giriniz...")   
             return userProductValue           
-    def productStockfonk():
+    def productStockfonk(): #stok fiyati
         try:
             productStock = int(input("Stok miktariniz giriniz : "))
             if productStock < 0:
@@ -28,18 +28,36 @@ while True:
         except ValueError:
             print("Gecerli bir deger giriniz...")
         return productStock
-    myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati ":productValuefonk() }
-    def productShow():
-        for i in myDict:
-            print(f"\n\nUrunler\n"
-                f"Urun No : {myDict[i]}\n"
-                f"Urun ismi : {myDict[i]['Urun']}\n"
-                f"Urun Stogu : {myDict[i]['toplam stok']}\n"
-                f"Urun Fiyati : {myDict[i]['urun fiyati']}" 
-                )
+    myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati":productValuefonk() }
+    def productShow(): #urunlerin gosterilmesi
+        """
+        Tüm ürünleri tablo formatında ekrana yazdırır.
+        """
+        if not myDict:
+            print("Görüntülenecek ürün bulunmamaktadır.")
+            return
+
+    # Tablo Başlıkları
+    print(f"\n\n{'Ürün No':<10} {'Ürün İsmi':<20} {'Stok':<10} {'Fiyat':<10}")
+    print("-" * 50)
+
+    # Ürün Bilgilerini Yazdır
+    for i in myDict:
+        print(f"{i:<10} {myDict[i].get('Urun', 'Bilinmiyor'):<20} {myDict[i].get('toplam stok', 'Bilinmiyor'):<10} {myDict[i].get('urun fiyati', 'Bilinmiyor'):<10}")
+
+    
+    #def productShow():
+    #    for i in myDict:
+    #        print(f"\n\nUrunler\n"
+    #            f"Urun No : {myDict[i]}\n"
+    #            f"Urun ismi : {myDict[i]['Urun']}\n"
+    #            f"Urun Stogu : {myDict[i]['toplam stok']}\n"
+    #            f"Urun Fiyati : {myDict[i]['urun fiyati']}" 
+    #            )
+    
 
 
-    def productUpdate():
+    def productUpdate(): #urun update
         try:
             urun_no = int(input("Guncellemek istediginiz urun numarasini giriniz : "))
             if urun_no in myDict:
@@ -61,7 +79,7 @@ while True:
                 print("Gecersiz urun numarasi...")
         except ValueError:
             print("Geçerli bir ürün numarası giriniz.")
-    def urun_sil():
+    def urun_sil(): #urun silimi
         try:
             urun_no = int(input("Silmek istediğiniz ürünün numarasını giriniz: "))
             if urun_no in myDict:
