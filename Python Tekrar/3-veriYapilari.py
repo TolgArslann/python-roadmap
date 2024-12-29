@@ -1,13 +1,3 @@
-"""
-
-Mini Proje:
-“Ürün Yönetim Sistemi” oluştur:
-
-Kullanıcıdan ürün adı, fiyatı ve stok miktarını alarak bir sözlükte sakla.
-Kullanıcı yeni bir ürün ekleyebilir, mevcut bir ürünü güncelleyebilir veya silebilir.
-
-"""
-
 def easyQuest(): # Kolay: Bir liste oluştur ve her elemanını ekrana yazdır.
     list = []
     for i in range(100):
