@@ -13,21 +13,10 @@ def urunSistemi():
         userProduct = input("Urun adini giriniz : ")
         urunNo +=1
         def productValuefonk(): #Kullanicidan urun fiyati alma
-            while True:            
-                try:
-                    userProductValue = float(input("Urun Fiyatini giriniz : "))
-                    #tlPoductName = f"{userProductValue:,.0f} TL"              
-                    if userProductValue < 0:
-                        raise ValueError("Fiyat negatif olamaz")                
-                except ValueError:
-                    print("Lutfen gecerli bir deger giriniz...")   
-                return userProductValue
-        def formatValue(value): # TL formatinda fiyati duzenleme
-            """Bir sayıyı nokta ile formatlar ve TL ekler."""
-            return f"{value:,.0f}".replace(",", ".") + " TL"
-        productValue = productValuefonk()
-        formattedValue = formatValue(productValue)        
-        def get_positive_float(prompt):
+            userProductValue = float(input("Urun Fiyatini giriniz : "))
+            lastValue = f"{userProductValue:,.0f}".replace(",", ".") + " TL"
+            print(lastValue)                                                                                                                                                                                           
+        def get_positive_float(prompt): #fiyatin gecerliligini kontrol etme
             while True:
                 try:
                     value = float(input(prompt))
@@ -36,7 +25,8 @@ def urunSistemi():
                     return value
                 except ValueError as e:
                     print(e)
-        valueGoster = get_positive_float(print(formattedValue))      
+        productValue = productValuefonk()
+        kontrolledValue = get_positive_float(productValue)    
         def productStockfonk(): #stok fiyati alma
             try:
                 productStock = int(input("Stok miktariniz giriniz : "))
