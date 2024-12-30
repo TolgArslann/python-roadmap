@@ -7,8 +7,7 @@ Kullanıcı yeni bir ürün ekleyebilir, mevcut bir ürünü güncelleyebilir ve
 """
 def urunSistemi():
     myDict = {}
-    urunNo = 0
-    
+    urunNo = 0    
     while True:
         #Kullanicidan urun bilgileri istenmeye basliyor
         userProduct = input("Urun adini giriniz : ")
@@ -27,8 +26,17 @@ def urunSistemi():
             """Bir sayıyı nokta ile formatlar ve TL ekler."""
             return f"{value:,.0f}".replace(",", ".") + " TL"
         productValue = productValuefonk()
-        formattedValue = formatValue(productValue)
-        print(formattedValue)       
+        formattedValue = formatValue(productValue)        
+        def get_positive_float(prompt):
+            while True:
+                try:
+                    value = float(input(prompt))
+                    if value < 0:
+                        raise ValueError("Değer negatif olamaz.")
+                    return value
+                except ValueError as e:
+                    print(e)
+        valueGoster = get_positive_float(print(formattedValue))      
         def productStockfonk(): #stok fiyati alma
             try:
                 productStock = int(input("Stok miktariniz giriniz : "))
