@@ -5,6 +5,22 @@ Mini Proje:
 Kullanıcıdan ürün adı, fiyatı ve stok miktarını alarak bir sözlükte sakla.
 Kullanıcı yeni bir ürün ekleyebilir, mevcut bir ürünü güncelleyebilir veya silebilir.
 """
+def productValues():
+    def productValuefonk(): #Kullanicidan urun fiyati alma
+        userProductValue = float(input("Urun Fiyatini giriniz : "))
+        lastValue = f"{userProductValue:,.0f}".replace(",", ".") + " TL"
+        return lastValue
+    def get_positive_float(prompt): #fiyatin gecerliligini kontrol etme
+        while True:
+            try:
+                value = float(input(prompt))
+                if value < 0:
+                    raise ValueError("Değer negatif olamaz.")
+                return value
+            except ValueError as e:
+                print(e)
+    productValue = productValuefonk()
+    kontrolledValue = get_positive_float(productValue)
 def urunSistemi():
     myDict = {}
     urunNo = 0    
@@ -12,21 +28,7 @@ def urunSistemi():
         #Kullanicidan urun bilgileri istenmeye basliyor
         userProduct = input("Urun adini giriniz : ")
         urunNo +=1
-        def productValuefonk(): #Kullanicidan urun fiyati alma
-            userProductValue = float(input("Urun Fiyatini giriniz : "))
-            lastValue = f"{userProductValue:,.0f}".replace(",", ".") + " TL"
-            print(lastValue)                                                                                                                                                                                           
-        def get_positive_float(prompt): #fiyatin gecerliligini kontrol etme
-            while True:
-                try:
-                    value = float(input(prompt))
-                    if value < 0:
-                        raise ValueError("Değer negatif olamaz.")
-                    return value
-                except ValueError as e:
-                    print(e)
-        productValue = productValuefonk()
-        kontrolledValue = get_positive_float(productValue)    
+        productValue = productValues()                                                                                                                                                                                      
         def productStockfonk(): #stok fiyati alma
             try:
                 productStock = int(input("Stok miktariniz giriniz : "))
@@ -36,7 +38,7 @@ def urunSistemi():
                 print("Gecerli bir deger giriniz...")
             return productStock
         #Urunler Dictionary Aktariliyor
-        myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati":productValuefonk() }
+        myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati":productValue }
         def productShow(): #urunlerin gosterilmesi
             """
             Tüm ürünleri tablo formatında ekrana yazdırır.
