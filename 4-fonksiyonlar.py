@@ -25,6 +25,6 @@ def squadCalculate():
     except ValueError:
         print("Lutfen bir sayi giriniz...")
         return squadCalculate()
-
+squadCalculate()
 
 
