@@ -3,21 +3,22 @@
 # Hata Yönetimi:
 # Sıfıra bölme hatasını (ZeroDivisionError) kontrol edin.
 # Yanlış türde veri girilirse (ValueError) kullanıcıya açıklayıcı mesaj verin.
-def divisionNums():
-    num1 = input("Bolunecek sayiyi giriniz :")
-    num2 = input("Bolecek sayiyi giriniz :")  
+def divisionNums(num1,num2):
     try:
-        value1= float(num1)
-        value2= float(num2)
-        sonuc = value1 / value2
+        sonuc = num1 / num2
     except ValueError:
         print("Lutfen sadece sayi giriniz....")
         return divisionNums()
-    except ZeroDivisionError:
-        print("Bolen sayi sifir olamaz..Lutfen tekrar bir deger giriniz...")
+    except ZeroDivisionError:        
         sonuc=None
-        return divisionNums()
+        return f"Bolen sayi sifir olamaz..Lutfen tekrar bir deger giriniz..."
     else:                      
-        print(f"{num1}/{num2} = {sonuc}")
-divisionNums()
+        return f"{num1}/{num2} = {sonuc}"
+try:
+    userNum1 = float(input("Birinci sayıyı giriniz: "))
+    userNum2 = float(input("İkinci sayıyı giriniz: "))
+    print(divisionNums(userNum1,userNum2))
+except ValueError:
+    print("Hata: Lütfen geçerli bir sayı giriniz!")
+
 
