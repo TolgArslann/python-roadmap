@@ -19,12 +19,16 @@
 
 
 def squadCalculate():
-    num = input("Karesini almak istediginiz sayiyi giriniz")
-    try:
-        num = float(num)
-    except ValueError:
-        print("Lutfen bir sayi giriniz...")
-        return squadCalculate()
+    while True:
+        num = input("Karesini almak istediğiniz sayıyı giriniz: ")
+        try:
+            num = float(num)
+            print(f"{num} sayısının karesi: {num**2}")
+            break  # İşlem başarılıysa döngüden çık
+        except ValueError:
+            print("Hata: Lütfen geçerli bir sayı giriniz.")
+
+
 squadCalculate()
 
 
