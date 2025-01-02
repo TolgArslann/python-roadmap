@@ -29,6 +29,15 @@ def squadCalculate():
             print("Hata: Lütfen geçerli bir sayı giriniz.")
 
 
-squadCalculate()
+def sumNums():
+    while True:
+        num1 = input("Ilk sayiyi giriniz : ")
+        num2 = input("Ikinci sayiyi giriniz : ")
+        try:
+            num1, num2 = float(num1, num2)
+            print(f"{num1} + {num2} = {num1+num2}")
+            break
+        except ValueError:
+            print("Hata: Lütfen geçerli bir sayı giriniz.")
 
 
