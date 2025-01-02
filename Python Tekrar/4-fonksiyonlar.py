@@ -38,6 +38,6 @@ def sumNums():
             print(f"{num1} + {num2} = {num1+num2}")
             break
         except ValueError:
-            print("Hata: Lütfen geçerli bir sayı giriniz.")
+            print("Hata: Lütfen geçerli bir sayı giriniz.")#webhookdeneme
 
 
