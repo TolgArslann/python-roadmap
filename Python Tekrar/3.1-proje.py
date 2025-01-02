@@ -21,6 +21,14 @@ def productValues():
                 print(e)
     productValue = productValuefonk()
     kontrolledValue = get_positive_float(productValue)
+def productStockfonk(): #stok mıktarı alma
+    try:
+        productStock = int(input("Stok miktariniz giriniz : "))
+        if productStock < 0:
+            raise ValueError("Stok negatif olamaz") 
+    except ValueError:
+            print("Gecerli bir deger giriniz...")
+    return productStock
 def urunSistemi():
     myDict = {}
     urunNo = 0    
@@ -28,17 +36,10 @@ def urunSistemi():
         #Kullanicidan urun bilgileri istenmeye basliyor
         userProduct = input("Urun adini giriniz : ")
         urunNo +=1
-        productValue = productValues()                                                                                                                                                                                      
-        def productStockfonk(): #stok fiyati alma
-            try:
-                productStock = int(input("Stok miktariniz giriniz : "))
-                if productStock < 0:
-                    raise ValueError("Stok negatif olamaz") 
-            except ValueError:
-                print("Gecerli bir deger giriniz...")
-            return productStock
+        productValue = productValues()
+        productStock = productStockfonk()                                                                                                                                                                                    
         #Urunler Dictionary Aktariliyor
-        myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStockfonk(), "urun fiyati":productValue }
+        myDict[urunNo] = {"Urun" : userProduct, "toplam stok": productStock, "urun fiyati":productValue }
         def productShow(): #urunlerin gosterilmesi
             """
             Tüm ürünleri tablo formatında ekrana yazdırır.
