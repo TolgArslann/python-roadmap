@@ -1,20 +1,18 @@
 myDict = {}
-def productValues(): ####Urun fiyatini duzenleme ve kontrol etme
-    def getPositiveFloat(): # Fiyatin alinmasi ve negatif girilip girilmediginin kontrolu
-        while True:
-            try:
-                controlledValue = float(input("Urun Fiyatini giriniz : "))
-                if controlledValue < 0:
-                    raise ValueError("Sayı negatif olamaz.")  
-                return controlledValue  # Pozitif bir değer girilirse döner
-            except ValueError as e:
-                print(e)  
-    def getProductValue(): # Fiyatin formatinin duzenlenmesi
-        userProductValue = getPositiveFloat()
-        lastValue = f"{userProductValue:,.0f}".replace(",", ".") + " TL"
-        return lastValue
-    return getProductValue()
-def getProductStock(): ####stok mıktarı alma
+def getPositiveFloat():#Fiyatin alinmasi ve negatif girilip girilmediginin kontrolu
+    while True:
+        try:
+            controlledValue = float(input("Urun Fiyatini giriniz : "))
+            if controlledValue < 0:
+                raise ValueError("Sayı negatif olamaz.")  
+            return controlledValue  # Pozitif bir değer girilirse döner
+        except ValueError as e:
+            print(e)  
+def getProductValue():#Fiyatin formatinin duzenlenmesi
+    userProductValue = getPositiveFloat()
+    lastValue = f"{userProductValue:,.0f}".replace(",", ".") + " TL"
+    return lastValue
+def getProductStock():####stok mıktarı alma
     try:
         productStock = int(input("Stok miktariniz giriniz : "))
         if productStock < 0:
@@ -46,7 +44,6 @@ def showProduct(): ####Urun Gosterimi
         fiyat = fiyat if fiyat is not None else "Bilinmiyor"
 
         print(f"{i:<10} {urun:<20} {stok:<10} {fiyat:<10}")
-
 def productUpdate(): ####Urun update
     try:
         urun_no = int(input("Guncellemek istediginiz urun numarasini giriniz : "))
