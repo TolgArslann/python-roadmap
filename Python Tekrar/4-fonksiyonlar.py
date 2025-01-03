@@ -34,10 +34,14 @@ def sumNums():
         num1 = input("Ilk sayiyi giriniz : ")
         num2 = input("Ikinci sayiyi giriniz : ")
         try:
-            num1, num2 = float(num1, num2)
+            num1 = float(num1)
+            num2 = float(num2)
+            toplam = num1 + num2
             print(f"{num1} + {num2} = {num1+num2}")
-            break
+            return toplam 
         except ValueError:
-            print("Hata: Lütfen geçerli bir sayı giriniz.")#webhookdeneme123
+            print("Hata: Lütfen geçerli bir sayı giriniz (örneğin, 5 veya 3.14).")
+
+sumNums()
 
 
